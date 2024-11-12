@@ -40,7 +40,7 @@ INSERT INTO Productos (ProveedorID, CategoriaSubcategoriaID, Nombre, Marca, Stoc
 ;
 
 INSERT INTO Productos (ProveedorID, CategoriaSubcategoriaID, Nombre, Marca, Stock, Perece, Fecha_Vencimiento) VALUES
-	(2, 2, 'Collar Antipulgas para Gatos', 'CatSafe', 30, 1, '2024-02-20'),
-	(3, 3, 'Shampoo para Conejos', 'BunnyClean', 20, 1, '2024-03-15'),
-	(4, 4, 'Antiparasitario para Peces', 'FishGuard', 15, 1, '2024-04-10')
+	(2, 2, 'Collar Antipulgas para Gatos', 'CatSafe', 30, 1, '2025-02-20'),
+	(3, 3, 'Shampoo para Conejos', 'BunnyClean', 20, 1, '2024-11-30'),
+	(4, 4, 'Antiparasitario para Peces', 'FishGuard', 15, 1, '2024-11-15')
 ;
