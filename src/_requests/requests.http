@@ -1,1 +1,4 @@
 @api = http://localhost:3000
+
+## Get all products
+GET {{api}}/productos

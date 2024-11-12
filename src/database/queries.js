@@ -1,4 +1,6 @@
 import { database } from "../config.js"
 
 // Queries para la base de datos.
-export default {}
+export default {
+    readProductos: `USE ${database}; SELECT * FROM productos`,
+}
