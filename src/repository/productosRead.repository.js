@@ -64,3 +64,16 @@ export const readProductosByPerishablilityRepository = async (perishable) => {
         pool.close()
     }
 }
+
+export const readProductosByMaxDaysBeforePerishRepository = async (days) => {
+    const pool = await getConnection();
+    try {
+        const resultado = await pool.request().input('days', sql.Int, days).query(queries.readProductosByMaxDaysToToPerish);
+        return resultado
+    } catch (error) {
+        console.error('Error en el Repositorio: ', error)
+        throw new Error('Error en la consulta a la base de datos')
+    } finally {
+        pool.close()
+    }
+}

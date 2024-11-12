@@ -14,3 +14,6 @@ GET {{api}}/productos/proveedor/PetWorld
 
 ### Get all products by if perishes
 GET {{api}}/productos/perece/si
+
+### Get all products by max days before perish
+GET {{api}}/productos/dias-perece/10

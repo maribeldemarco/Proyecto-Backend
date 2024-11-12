@@ -1,4 +1,4 @@
-import { readProductosRepository, readProductosByCategoryRepository, readProductosBySubCategoryRepository, readProductosByProviderRepository, readProductosByPerishablilityRepository }  from '../repository/productosRead.repository.js';
+import { readProductosRepository, readProductosByCategoryRepository, readProductosBySubCategoryRepository, readProductosByProviderRepository, readProductosByPerishablilityRepository, readProductosByMaxDaysBeforePerishRepository }  from '../repository/productosRead.repository.js';
 
 export const readProductosService = async () => {
     try {
@@ -39,6 +39,15 @@ export const readProductosByProviderService = async (provider) => {
 export const readProductosByPerishablilityService = async (perishable) => {
     try {
         return readProductosByPerishablilityRepository(perishable)
+    } catch (error) {
+        console.error('Error en el Servicio: ', error)
+        throw new Error('Error al obteber los productos')
+    }
+}
+
+export const readProductosByMaxDaysToPerishService = async (days) => {
+    try {
+        return readProductosByMaxDaysBeforePerishRepository(days)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
         throw new Error('Error al obteber los productos')

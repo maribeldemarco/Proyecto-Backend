@@ -69,4 +69,17 @@ export default {
             END AS Vencimiento
         FROM productos
         WHERE Perece = @perishable;`,
+    readProductosByMaxDaysToToPerish:
+        `USE ${database};
+        SELECT Nombre, Marca, Stock,
+        CASE
+            WHEN Perece = 1 THEN 'Si'
+            ELSE 'No'
+            END AS Perece,
+        CASE
+            WHEN Fecha_Vencimiento IS NULL THEN '-'
+            ELSE CONVERT(varchar, Fecha_Vencimiento, 103)
+            END AS Vencimiento
+        FROM productos
+        WHERE Perece = 1 AND Fecha_Vencimiento <= DATEADD(day, @days, GETDATE());`,
 }

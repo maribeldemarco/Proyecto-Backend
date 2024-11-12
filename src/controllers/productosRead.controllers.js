@@ -1,4 +1,4 @@
-import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService, readProductosByProviderService, readProductosByPerishablilityService } from '../services/productosRead.service.js';
+import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService, readProductosByProviderService, readProductosByPerishablilityService, readProductosByMaxDaysToPerishService } from '../services/productosRead.service.js';
 
 export const readProductosController = async (req, res) => {
     try {
@@ -61,6 +61,22 @@ export const readProductosByPerishabilityController = async (req, res) => {
             let productos = await readProductosByPerishablilityService(perishable)
 
             productos.recordset.length === 0 ? res.send('No hay datos sobre ese estado de perecimiento') : res.send(productos.recordset)
+        }
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener los productos' })
+    }
+}
+
+export const readProductosByMaxDaysToPerishController = async (req, res) => {
+    try {
+        let { days } = req.params
+        if (isNaN(days) || days < 0) {
+            res.send('La cantidad de dias debe ser un numero entero positivo')
+        } else {
+            let productos = await readProductosByMaxDaysToPerishService(days)
+
+            productos.recordset.length === 0 ? res.send('No hay datos sobre productos en ese rango para perecer') : res.send(productos.recordset)
         }
     } catch (error) {
         console.error(error)
