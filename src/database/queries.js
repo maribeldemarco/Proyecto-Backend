@@ -16,7 +16,7 @@ export default {
         FROM productos`,
     readProductosByCategory:
         `USE ${database}
-        SELECT cs.CategoriaNombre, .p.Nombre, p.Marca, p.Stock,
+        SELECT cs.CategoriaNombre, p.Nombre, p.Marca, p.Stock,
         CASE
             WHEN p.Perece = 1 THEN 'Si'
             ELSE 'No'
@@ -55,5 +55,18 @@ export default {
             END AS Vencimiento
         FROM productos pd
         INNER JOIN proveedores pv on pd.ProveedorID = pv.ProveedorID
-        WHERE pv.Nombre = @provider;`
+        WHERE pv.Nombre = @provider;`,
+    readProductosByPerishablility:
+        `USE ${database};
+        SELECT Nombre, Marca, Stock,
+        CASE
+            WHEN Perece = 1 THEN 'Si'
+            ELSE 'No'
+            END AS Perece,
+        CASE
+            WHEN Fecha_Vencimiento IS NULL THEN '-'
+            ELSE CONVERT(varchar, Fecha_Vencimiento, 103)
+            END AS Vencimiento
+        FROM productos
+        WHERE Perece = @perishable;`,
 }

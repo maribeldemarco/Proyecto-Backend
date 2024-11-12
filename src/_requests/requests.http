@@ -11,3 +11,6 @@ GET {{api}}/productos/subcategoria/alimentos
 
 ### Get all products by provider
 GET {{api}}/productos/proveedor/PetWorld
+
+### Get all products by if perishes
+GET {{api}}/productos/perecedero/si
