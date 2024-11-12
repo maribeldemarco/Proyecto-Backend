@@ -34,10 +34,13 @@ INSERT INTO Proveedores (Nombre, Contacto, Telefono, Email) VALUES
 
 INSERT INTO Productos (ProveedorID, CategoriaSubcategoriaID, Nombre, Marca, Stock, Perece) VALUES
 	(1, 1, 'Alimento Premium para Perros', 'DogLife', 50, 0),
-    (2, 2, 'Collar Antipulgas para Gatos', 'CatSafe', 30, 1),
-    (3, 3, 'Shampoo para Conejos', 'BunnyClean', 20, 1),
-    (4, 4, 'Antiparasitario para Peces', 'FishGuard', 15, 1),
     (5, 5, 'Jaula para Aves', 'BirdHome', 10, 0),
     (6, 6, 'Alimento para Roedores', 'Rodentia', 25, 0),
     (7, 7, 'Pelota para Perros', 'PetFun', 100, 0)
+;
+
+INSERT INTO Productos (ProveedorID, CategoriaSubcategoriaID, Nombre, Marca, Stock, Perece, Fecha_Vencimiento) VALUES
+	(2, 2, 'Collar Antipulgas para Gatos', 'CatSafe', 30, 1, '2024-02-20'),
+	(3, 3, 'Shampoo para Conejos', 'BunnyClean', 20, 1, '2024-03-15'),
+	(4, 4, 'Antiparasitario para Peces', 'FishGuard', 15, 1, '2024-04-10')
 ;
