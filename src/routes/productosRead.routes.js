@@ -7,6 +7,6 @@ router.get('/productos', readProductosController)
 router.get('/productos/categoria/:category', readProductosByCategoryController)
 router.get('/productos/subcategoria/:subcategory', readProductosBySubCategoryController)
 router.get('/productos/proveedor/:provider', readProductosByProviderController)
-router.get('/productos/perecedero/:option', readProductosByPerishabilityController)
+router.get('/productos/perece/:option', readProductosByPerishabilityController)
 
 export default router

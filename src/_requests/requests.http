@@ -13,4 +13,4 @@ GET {{api}}/productos/subcategoria/alimentos
 GET {{api}}/productos/proveedor/PetWorld
 
 ### Get all products by if perishes
-GET {{api}}/productos/perecedero/si
+GET {{api}}/productos/perece/si
