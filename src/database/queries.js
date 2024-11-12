@@ -7,5 +7,10 @@ export default {
         `USE ${database}
         SELECT * FROM productos p
         INNER JOIN CategoriasSubcategorias cs on p.CategoriaSubcategoriaID = cs.CategoriasSubcategoriasID
-        WHERE cs.CategoriaNombre = @category;`
+        WHERE cs.CategoriaNombre = @category;`,
+    readProductosBySubCategory:
+        `USE ${database}
+        SELECT * FROM productos p
+        INNER JOIN CategoriasSubcategorias cs on p.CategoriaSubcategoriaID = cs.CategoriasSubcategoriasID
+        WHERE cs.SubcategoriaNombre = @subcategory;`
 }

@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { readProductosController, readProductosByCategoryController } from  "../controllers/productosRead.controllers.js";
+import { readProductosController, readProductosByCategoryController, readProductosBySubCategoryController } from  "../controllers/productosRead.controllers.js";
 
 const router = Router()
 
 router.get('/productos', readProductosController)
-router.get('/productos/:category', readProductosByCategoryController)
+router.get('/productos/categoria/:category', readProductosByCategoryController)
+router.get('/productos/subcategoria/:subcategory', readProductosBySubCategoryController)
 
 export default router

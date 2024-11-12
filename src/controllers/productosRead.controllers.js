@@ -1,4 +1,4 @@
-import { readProductosService, readProductosByCategoryService } from  '../services/productosRead.service.js';
+import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService } from  '../services/productosRead.service.js';
 
 export const readProductosController = async (req, res) => {
     try {
@@ -18,6 +18,19 @@ export const readProductosByCategoryController = async (req, res) => {
         let productos = await readProductosByCategoryService(category)
         
         productos.recordset.length === 0 ? res.send('No hay datos sobre la categoria o esta no existe') : res.send(productos.recordset)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener los productos' })
+    }
+}
+
+export const readProductosBySubCategoryController = async (req, res) => {
+    try {
+        let { subcategory } = req.params
+        let productos = await readProductosBySubCategoryService(subcategory)
+        
+        productos.recordset.length === 0 ? res.send('No hay datos sobre la subcategoria o esta no existe') : res.send(productos.recordset)
 
     } catch (error) {
         console.error(error)

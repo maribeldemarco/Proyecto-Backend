@@ -4,4 +4,7 @@
 GET {{api}}/productos
 
 ### Get all products by category
-GET {{api}}/productos/gatos
+GET {{api}}/productos/categoria/gatos
+
+### Get all products by subcategory
+GET {{api}}/productos/subcategoria/alimentos
