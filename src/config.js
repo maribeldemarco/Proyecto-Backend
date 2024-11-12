@@ -13,10 +13,13 @@ const dbSQLConfig = {
     password: process.env.PASSWORD_DB,
     server:  process.env.SERVER_DB,
     database: database,
-    port:  process.env.PORT_DB,
+    port: parseInt(process.env.PORT_DB, 10),
     options: {
-        trustServerCertificate: true
-    }
+        trustServerCertificate: true,
+   encrypt: false , // Forzar el uso de cifrado trustServerCertificate: true, // Confiar en el certificado del servidor 
+     //cryptoCredentialsDetails: { minVersion: 'TLSv1.2'
+  //  }
+}
 }
 
 export {
