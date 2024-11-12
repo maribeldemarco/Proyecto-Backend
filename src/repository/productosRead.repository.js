@@ -38,3 +38,16 @@ export const readProductosBySubCategoryRepository = async (subcategory) => {
         pool.close()
     }
 }
+
+export const readProductosByProviderRepository = async (provider) => {
+    const pool = await getConnection();
+    try {
+        const resultado = await pool.request().input('provider', sql.NVarChar, provider).query(queries.readProductosByProvider);
+        return resultado
+    } catch (error) {
+        console.error('Error en el Repositorio: ', error)
+        throw new Error('Error en la consulta a la base de datos')
+    } finally {
+        pool.close()
+    }
+}

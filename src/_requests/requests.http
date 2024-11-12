@@ -8,3 +8,6 @@ GET {{api}}/productos/categoria/gatos
 
 ### Get all products by subcategory
 GET {{api}}/productos/subcategoria/alimentos
+
+### Get all products by provider
+GET {{api}}/productos/proveedor/PetWorld

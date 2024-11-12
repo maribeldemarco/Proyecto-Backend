@@ -1,4 +1,4 @@
-import { readProductosRepository, readProductosByCategoryRepository, readProductosBySubCategoryRepository }  from '../repository/productosRead.repository.js';
+import { readProductosRepository, readProductosByCategoryRepository, readProductosBySubCategoryRepository, readProductosByProviderRepository }  from '../repository/productosRead.repository.js';
 
 export const readProductosService = async () => {
     try {
@@ -21,6 +21,15 @@ export const readProductosByCategoryService = async (category) => {
 export const readProductosBySubCategoryService = async (subcategory) => {
     try {
         return readProductosBySubCategoryRepository(subcategory)
+    } catch (error) {
+        console.error('Error en el Servicio: ', error)
+        throw new Error('Error al obteber los productos')
+    }
+}
+
+export const readProductosByProviderService = async (provider) => {
+    try {
+        return readProductosByProviderRepository(provider)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
         throw new Error('Error al obteber los productos')
