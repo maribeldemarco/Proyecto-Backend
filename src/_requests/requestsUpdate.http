@@ -1,0 +1,16 @@
+@api = http://localhost:3000
+
+
+PUT {{api}}/api/productos/4
+Content-Type: application/json
+
+{
+    "ProveedorID": 2, 
+    "CategoriaSubcategoriaID": 3,
+    "Nombre": "Nuevo nombre del producto",
+    "Marca": "Nueva marca",
+    "Stock": 50,
+    "Perece": true,
+    "Fecha_Vencimiento": "2025-12-31"
+    
+}
