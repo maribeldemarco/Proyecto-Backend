@@ -1,8 +1,10 @@
 import express from 'express';
 import { expressConfig } from './src/config.js';
 import { getConnection } from './src/database/conexion.js';
+import createRoutes from './src/create-routes/create-routes.js';  // Verifica esta ruta
 
 const app = express();
+app.use(express.json()); // Middleware para parsear JSON
 
 async function startServer() {
   try {
@@ -17,6 +19,9 @@ async function startServer() {
     app.get('/', (req, res) => {
       res.send('Raiz del servidor');
     });
+    
+    // Usar las rutas definidas en create-routes
+    app.use('/api', createRoutes); // Asegúrate de que las rutas están bajo "/api"
 
     // Iniciar el servidor
     app.listen(app.get('port'), app.get('host'), () => {
