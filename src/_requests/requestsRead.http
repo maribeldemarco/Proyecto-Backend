@@ -3,6 +3,9 @@
 ### Get all products
 GET {{api}}/productos
 
+### Get a product by id
+GET {{api}}/productos/19
+
 ### Get all products by category
 GET {{api}}/productos/categoria/gatos
 

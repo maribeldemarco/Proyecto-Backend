@@ -13,6 +13,20 @@ export const readProductosRepository = async () => {
     }
 }
 
+export const readProductosByIdRepository = async (id) => {
+    const pool = await getConnection();
+    try {
+        const resultado = await pool.request().input('id', sql.Int, id).query(queries.readProductoById);
+        return resultado
+    } catch (error) {
+        console.error('Error en el Repositorio: ', error)
+        throw new Error('Error en la consulta a la base de datos')
+    } finally {
+        pool.close()
+    }
+}
+
+
 export const readProductosByCategoryRepository = async (category) => {
     const pool = await getConnection();
     try {

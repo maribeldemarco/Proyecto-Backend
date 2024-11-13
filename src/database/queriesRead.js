@@ -14,6 +14,19 @@ export const queriesRead = {
             ELSE CONVERT(varchar, Fecha_Vencimiento, 103)
             END AS Vencimiento
         FROM productos`,
+    readProductoById:
+        `USE ${database};
+        SELECT Nombre, Marca, Stock,
+        CASE
+            WHEN Perece = 1 THEN 'Si'
+            ELSE 'No'
+            END AS Perece,
+        CASE
+            WHEN Fecha_Vencimiento IS NULL THEN '-'
+            ELSE CONVERT(varchar, Fecha_Vencimiento, 103)
+            END AS Vencimiento
+        FROM productos
+        WHERE ProductoID = @id;`,
     readProductosByCategory:
         `USE ${database}
         SELECT cs.CategoriaNombre, p.Nombre, p.Marca, p.Stock,

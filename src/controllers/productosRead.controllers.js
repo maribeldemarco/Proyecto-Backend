@@ -1,4 +1,4 @@
-import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService, readProductosByProviderService, readProductosByPerishablilityService, readProductosByMaxDaysToPerishService } from '../services/productosRead.service.js';
+import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService, readProductosByProviderService, readProductosByPerishablilityService, readProductosByMaxDaysToPerishService, readProductosByIdService } from '../services/productosRead.service.js';
 
 export const readProductosController = async (req, res) => {
     try {
@@ -9,6 +9,19 @@ export const readProductosController = async (req, res) => {
     } catch (error) {
         console.error(error)
         res.status(500).send({ message: 'Error al obtener los productos' })
+    }
+}
+
+export const readProductosByIdController = async (req, res) => {
+    try {
+        let { id } = req.params
+        let productos = await readProductosByIdService(id)
+
+        productos.recordset.length === 0 ? res.send('No hay datos sobre ese id o este no existe') : res.send(productos.recordset)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener el producto' })
     }
 }
 
