@@ -1,4 +1,4 @@
-import { getConnection, queries, sql } from '../database/exports.js'
+import { getConnection, queriesRead as queries, sql } from '../database/exports.js'
 
 export const readProductosRepository = async () => {
     const pool = await getConnection();

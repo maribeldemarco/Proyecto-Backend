@@ -1,7 +1,7 @@
 import { database } from "../config.js"
 
 // Queries para la base de datos.
-export const queries = {
+export const queriesRead = {
     readProductos:
         `USE ${database};
         SELECT Nombre, Marca, Stock,

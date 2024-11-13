@@ -1,2 +1,2 @@
 export * from './conexion.js'
-export { queries } from './queriesRead.js'
+export { queriesRead } from './queriesRead.js'
