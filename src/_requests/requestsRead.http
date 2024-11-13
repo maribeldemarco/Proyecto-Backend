@@ -1,22 +1,44 @@
 @api = http://localhost:3000
 
-### Get all products
+###### Get all products
 GET {{api}}/productos
 
-### Get a product by id
+###### Get a product by id
+### Valid id
 GET {{api}}/productos/19
+### Valid id with no product in db
+GET {{api}}/productos/1
+### Invalid id
+GET {{api}}/productos/asd
 
-### Get all products by category
+###### Get all products by category
+### Valid category
 GET {{api}}/productos/categoria/gatos
+### Invalid category
+GET {{api}}/productos/categoria/dinosaurios
 
-### Get all products by subcategory
+###### Get all products by subcategory
+### Valid subcategory
 GET {{api}}/productos/subcategoria/alimentos
+### Invalid subcategory
+GET {{api}}/productos/subcategoria/sueños
 
-### Get all products by provider
+###### Get all products by provider
+### Valid provider
 GET {{api}}/productos/proveedor/PetWorld
+### Invalid provider
+GET {{api}}/productos/proveedor/Amazon
 
-### Get all products by if perishes
+###### Get all products by if perishes
+### Valid if perishes ('si')
 GET {{api}}/productos/perece/si
+### Valid if perishes ('no')
+GET {{api}}/productos/perece/no
+### Invalid if perishes
+GET {{api}}/productos/perece/asd
 
-### Get all products by max days before perish
+###### Get all products by max days before perish
+### Valid max days before perish
 GET {{api}}/productos/dias-perece/10
+### Invalid max days before perish
+GET {{api}}/productos/dias-perece/asd
