@@ -15,10 +15,13 @@ export const readProductosController = async (req, res) => {
 export const readProductosByIdController = async (req, res) => {
     try {
         let { id } = req.params
-        let productos = await readProductosByIdService(id)
+        if (isNaN(id) || id <= 0) {
+            res.send('El id debe ser un numero entero mayor a 0')
+        } else {
+            let productos = await readProductosByIdService(id)
 
-        productos.recordset.length === 0 ? res.send('No hay datos sobre ese id o este no existe') : res.send(productos.recordset)
-
+            productos.recordset.length === 0 ? res.send('No hay datos sobre un producto con ese id') : res.send(productos.recordset)
+        }
     } catch (error) {
         console.error(error)
         res.status(500).send({ message: 'Error al obtener el producto' })
@@ -85,7 +88,7 @@ export const readProductosByMaxDaysToPerishController = async (req, res) => {
     try {
         let { days } = req.params
         if (isNaN(days) || days < 0) {
-            res.send('La cantidad de dias debe ser un numero entero positivo')
+            res.send('La cantidad de dias debe ser un numero entero mayor a 0')
         } else {
             let productos = await readProductosByMaxDaysToPerishService(days)
 
