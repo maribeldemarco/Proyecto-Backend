@@ -1,10 +1,11 @@
 import express from 'express';
 import { expressConfig } from './src/config.js';
 import { getConnection } from './src/database/conexion.js';
-import createRoutes from './src/create-routes/create-routes.js';  // Verifica esta ruta
+import createRoutes from './src/create-routes/create-routes.js';  
+import { createProductController } from './src/create-controller/create-controller.js';  // Ajusta la ruta según sea necesario
 
 const app = express();
-app.use(express.json()); // Middleware para parsear JSON
+app.use(express.json()); 
 
 async function startServer() {
   try {
@@ -21,7 +22,8 @@ async function startServer() {
     });
     
     // Usar las rutas definidas en create-routes
-    app.use('/api', createRoutes); // Asegúrate de que las rutas están bajo "/api"
+    //app.post('/productos', createProductController); // Esto va a llamar al controlador que maneja la creación
+    app.use(createRoutes);  // Esto usará las rutas definidas en routes.js
 
     // Iniciar el servidor
     app.listen(app.get('port'), app.get('host'), () => {

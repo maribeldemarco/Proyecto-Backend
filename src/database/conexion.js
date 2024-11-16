@@ -4,7 +4,7 @@ import { dbSQLConfig } from '../config.js'
 export async function getConnection() {
     try {
         const pool = await sql.connect(dbSQLConfig);
-        console.log('Conexión exitosa a la base de datos1');
+        console.log('Conexion exitosa a la base de datos');
 
         return pool
     } catch (error) {

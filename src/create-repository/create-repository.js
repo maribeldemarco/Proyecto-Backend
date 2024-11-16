@@ -12,7 +12,7 @@ export const createProductRepository = async (nuevoProducto) => {
             .input('Marca', sql.VarChar, Marca)
             .input('Stock', sql.Int, Stock)
             .input('Perece', sql.Bit, Perece)
-            .input('Fecha_Vencimiento', sql.Date, Fecha_Vencimiento || null)
+            .input('Fecha_Vencimiento', sql.Date, Fecha_Vencimiento )
             .query(queries.createProduct);
 
         console.log('el Producto fue  creado');
@@ -27,18 +27,3 @@ export const createProductRepository = async (nuevoProducto) => {
     }
 };
 
-//pruebo agregando producto
-const nuevoProducto = {
-    ProveedorID: 1,
-    CategoriaSubcategoriaID: 1,
-    Nombre: 'Alimento Premium para Perros',
-    Marca: 'DogLife',
-    Stock: 300,
-    Perece: 0,
-    Fecha_Vencimiento: null 
-};
-
-// Llamada  a la funcion para crear un producto
-createProductRepository(nuevoProducto)
-    .then(response => console.log('Producto creado:', response))
-    .catch(error => console.error('Error:', error));
