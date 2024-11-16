@@ -3,8 +3,12 @@ import { expressConfig } from './src/config.js';
 import { getConnection } from './src/database/conexion.js';
 import createRoutes from './src/create-routes/create-routes.js';  
 import { createProductController } from './src/create-controller/create-controller.js';  // Ajusta la ruta según sea necesario
+import cors from 'cors';
 
 const app = express();
+app.use(cors({
+  origin: '*' // Permite todos los orígenes
+}));
 app.use(express.json()); 
 
 async function startServer() {
