@@ -1,4 +1,4 @@
-import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService, readProductosByProviderService, readProductosByPerishablilityService, readProductosByMaxDaysToPerishService, readProductosByIdService } from '../services/productosRead.service.js';
+import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService, readProductosByProviderService, readProductosByPerishablilityService, readProductosByMaxDaysToPerishService, readProductosByIdService, readCategoriasService, readSubcategoriasService, readProductosByCategoryAndSubcategoryService } from '../services/productosRead.service.js';
 
 export const readProductosController = async (req, res) => {
     try {
@@ -54,6 +54,19 @@ export const readProductosBySubCategoryController = async (req, res) => {
     }
 }
 
+export const readProductosByCategoryAndSubcategoryController = async (req, res) => {
+    try {
+        let { category, subcategory } = req.params
+        let productos = await readProductosByCategoryAndSubcategoryService(category, subcategory)
+
+        productos.recordset.length === 0 ? res.send('No hay datos sobre la categoria/subcategoria o alguna no existe') : res.send(productos.recordset)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener los productos' })
+    }
+}
+
 export const readProductosByProviderController = async (req, res) => {
     try {
         let { provider } = req.params
@@ -97,5 +110,29 @@ export const readProductosByMaxDaysToPerishController = async (req, res) => {
     } catch (error) {
         console.error(error)
         res.status(500).send({ message: 'Error al obtener los productos' })
+    }
+}
+
+export const readCategoriasController = async (req, res) => {
+    try {
+        let categorias = await readCategoriasService()
+
+        categorias.recordset.length === 0 ? res.send('La base de datos está vacía') : res.send(categorias.recordset)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener las categorias' })
+    }
+}
+
+export const readSubcategoriasController = async (req, res) => {
+    try {
+        let subcategorias = await readSubcategoriasService()
+
+        subcategorias.recordset.length === 0 ? res.send('La base de datos está vacía') : res.send(subcategorias.recordset)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener las subcategorias' })
     }
 }

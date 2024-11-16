@@ -23,6 +23,14 @@ GET {{api}}/productos/subcategoria/alimentos
 ### Invalid subcategory
 GET {{api}}/productos/subcategoria/sueños
 
+###### Get all products by category and subcategory
+### Valid category and subcategory
+GET {{api}}/productos/categoriaYsubcategoria/gatos/alimentos
+### Invalid category
+GET {{api}}/productos/categoriaYsubcategoria/dinosaurios/alimentos
+### Invalid subcategory
+GET {{api}}/productos/categoriaYsubcategoria/gatos/sueños
+
 ###### Get all products by provider
 ### Valid provider
 GET {{api}}/productos/proveedor/PetWorld
@@ -42,3 +50,9 @@ GET {{api}}/productos/perece/asd
 GET {{api}}/productos/dias-perece/10
 ### Invalid max days before perish
 GET {{api}}/productos/dias-perece/asd
+
+###### Get all categories
+GET {{api}}/categorias
+
+###### Get all subcategories
+GET {{api}}/subcategorias

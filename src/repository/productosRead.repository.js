@@ -53,6 +53,22 @@ export const readProductosBySubCategoryRepository = async (subcategory) => {
     }
 }
 
+export const readProductosByCategoryAndSubcategoryRepository = async (category, subcategory) => {
+    const pool = await getConnection();
+    try {
+        const resultado = await pool.request()
+        .input('category', sql.NVarChar, category)
+        .input('subcategory', sql.NVarChar, subcategory)
+        .query(queries.readProductosByCategoryAndSubCategory);
+        return resultado
+    } catch (error) {
+        console.error('Error en el Repositorio: ', error)
+        throw new Error('Error en la consulta a la base de datos')
+    } finally {
+        pool.close()
+    }
+}
+
 export const readProductosByProviderRepository = async (provider) => {
     const pool = await getConnection();
     try {
@@ -83,6 +99,32 @@ export const readProductosByMaxDaysBeforePerishRepository = async (days) => {
     const pool = await getConnection();
     try {
         const resultado = await pool.request().input('days', sql.Int, days).query(queries.readProductosByMaxDaysToToPerish);
+        return resultado
+    } catch (error) {
+        console.error('Error en el Repositorio: ', error)
+        throw new Error('Error en la consulta a la base de datos')
+    } finally {
+        pool.close()
+    }
+}
+
+export const readCategoriasRepository = async () => {
+    const pool = await getConnection();
+    try {
+        const resultado = await pool.request().query(queries.readCategorias);
+        return resultado
+    } catch (error) {
+        console.error('Error en el Repositorio: ', error)
+        throw new Error('Error en la consulta a la base de datos')
+    } finally {
+        pool.close()
+    }
+}
+
+export const readSubcategoriasRepository = async () => {
+    const pool = await getConnection();
+    try {
+        const resultado = await pool.request().query(queries.readSubcategorias);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)

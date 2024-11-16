@@ -1,4 +1,4 @@
-import { readProductosRepository, readProductosByCategoryRepository, readProductosBySubCategoryRepository, readProductosByProviderRepository, readProductosByPerishablilityRepository, readProductosByMaxDaysBeforePerishRepository, readProductosByIdRepository }  from '../repository/productosRead.repository.js';
+import { readProductosRepository, readProductosByCategoryRepository, readProductosBySubCategoryRepository, readProductosByProviderRepository, readProductosByPerishablilityRepository, readProductosByMaxDaysBeforePerishRepository, readProductosByIdRepository, readCategoriasRepository, readSubcategoriasRepository, readProductosByCategoryAndSubcategoryRepository }  from '../repository/productosRead.repository.js';
 
 export const readProductosService = async () => {
     try {
@@ -36,6 +36,15 @@ export const readProductosBySubCategoryService = async (subcategory) => {
     }
 }
 
+export const readProductosByCategoryAndSubcategoryService = async (category, subcategory) => {
+    try {
+        return readProductosByCategoryAndSubcategoryRepository(category, subcategory)
+    } catch (error) {
+        console.error('Error en el Servicio: ', error)
+        throw new Error('Error al obteber los productos')
+    }
+}
+
 export const readProductosByProviderService = async (provider) => {
     try {
         return readProductosByProviderRepository(provider)
@@ -60,5 +69,23 @@ export const readProductosByMaxDaysToPerishService = async (days) => {
     } catch (error) {
         console.error('Error en el Servicio: ', error)
         throw new Error('Error al obteber los productos')
+    }
+}
+
+export const readCategoriasService = async () => {
+    try {
+        return readCategoriasRepository()
+    } catch (error) {
+        console.error('Error en el Servicio: ', error)
+        throw new Error('Error al obteber las categorias')
+    }
+}
+
+export const readSubcategoriasService = async () => {
+    try {
+        return readSubcategoriasRepository()
+    } catch (error) {
+        console.error('Error en el Servicio: ', error)
+        throw new Error('Error al obteber las subcategorias')
     }
 }
