@@ -37,6 +37,32 @@ GET {{api}}/productos/proveedor/PetWorld
 ### Invalid provider
 GET {{api}}/productos/proveedor/Amazon
 
+###### Get all products by category and provider
+### Valid category and provider
+GET {{api}}/productos/categoriaYproveedor/gatos/PetWorld
+### Invalid category
+GET {{api}}/productos/categoriaYproveedor/dinosaurios/PetWorld
+### Invalid provider
+GET {{api}}/productos/categoriaYproveedor/gatos/Amazon
+
+###### Get all products by subcategory and provider
+### Valid subcategory and provider
+GET {{api}}/productos/subcategoriaYproveedor/alimentos/PetWorld
+### Invalid subcategory
+GET {{api}}/productos/subcategoriaYproveedor/sueños/PetWorld
+### Invalid provider
+GET {{api}}/productos/subcategoriaYproveedor/alimentos/Amazon
+
+###### Get all products by category and subcategory and provider
+### Valid category, subcategory and provider
+GET {{api}}/productos/categoriaYsubcategoriaYproveedor/gatos/alimentos/Happy Pets
+### Invalid category
+GET {{api}}/productos/categoriaYsubcategoriaYproveedor/dinosaurios/alimentos/PetWorld
+### Invalid subcategory
+GET {{api}}/productos/categoriaYsubcategoriaYproveedor/gatos/sueños/PetWorld
+### Invalid provider
+GET {{api}}/productos/categoriaYsubcategoriaYproveedor/gatos/alimentos/Amazon
+
 ###### Get all products by if perishes
 ### Valid if perishes ('si')
 GET {{api}}/productos/perece/si
@@ -56,3 +82,6 @@ GET {{api}}/categorias
 
 ###### Get all subcategories
 GET {{api}}/subcategorias
+
+###### Get all providers
+GET {{api}}/proveedores

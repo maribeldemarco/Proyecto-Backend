@@ -1,4 +1,4 @@
-import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService, readProductosByProviderService, readProductosByPerishablilityService, readProductosByMaxDaysToPerishService, readProductosByIdService, readCategoriasService, readSubcategoriasService, readProductosByCategoryAndSubcategoryService } from '../services/productosRead.service.js';
+import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService, readProductosByProviderService, readProductosByPerishablilityService, readProductosByMaxDaysToPerishService, readProductosByIdService, readCategoriasService, readSubcategoriasService, readProductosByCategoryAndSubcategoryService, readProveedoresService, readProductosByCategoryAndProviderService, readProductosBySubcategoryAndProviderService, readProductosByCategoryAndSubcategoryAndProviderService } from '../services/productosRead.service.js';
 
 export const readProductosController = async (req, res) => {
     try {
@@ -54,6 +54,19 @@ export const readProductosBySubCategoryController = async (req, res) => {
     }
 }
 
+export const readProductosByProviderController = async (req, res) => {
+    try {
+        let { provider } = req.params
+        let productos = await readProductosByProviderService(provider)
+
+        productos.recordset.length === 0 ? res.send('No hay datos sobre el proveedor o este no existe') : res.send(productos.recordset)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener los productos' })
+    }
+}
+
 export const readProductosByCategoryAndSubcategoryController = async (req, res) => {
     try {
         let { category, subcategory } = req.params
@@ -67,12 +80,38 @@ export const readProductosByCategoryAndSubcategoryController = async (req, res) 
     }
 }
 
-export const readProductosByProviderController = async (req, res) => {
+export const readProductosByCategoryAndProviderController = async (req, res) => {
     try {
-        let { provider } = req.params
-        let productos = await readProductosByProviderService(provider)
+        let { category, provider } = req.params
+        let productos = await readProductosByCategoryAndProviderService(category, provider)
 
-        productos.recordset.length === 0 ? res.send('No hay datos sobre el proveedor o este no existe') : res.send(productos.recordset)
+        productos.recordset.length === 0 ? res.send('No hay datos sobre la categoria/subcategoria o alguna no existe') : res.send(productos.recordset)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener los productos' })
+    }
+}
+
+export const readProductosBySubcategoryAndProviderController = async (req, res) => {
+    try {
+        let { Subcategory, provider } = req.params
+        let productos = await readProductosBySubcategoryAndProviderService(Subcategory, provider)
+
+        productos.recordset.length === 0 ? res.send('No hay datos sobre la categoria/subcategoria o alguna no existe') : res.send(productos.recordset)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener los productos' })
+    }
+}
+
+export const readProductosByCategoryAndSubcategoryAndProviderController = async (req, res) => {
+    try {
+        let { category, subcategory, provider } = req.params
+        let productos = await readProductosByCategoryAndSubcategoryAndProviderService(category, subcategory, provider)
+
+        productos.recordset.length === 0 ? res.send('No hay datos sobre la categoria/subcategoria o alguna no existe') : res.send(productos.recordset)
 
     } catch (error) {
         console.error(error)
@@ -134,5 +173,17 @@ export const readSubcategoriasController = async (req, res) => {
     } catch (error) {
         console.error(error)
         res.status(500).send({ message: 'Error al obtener las subcategorias' })
+    }
+}
+
+export const readProveedoresController = async (req, res) => {
+    try {
+        let proveedores = await readProveedoresService()
+
+        proveedores.recordset.length === 0 ? res.send('La base de datos está vacía') : res.send(proveedores.recordset)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener los proveedores' })
     }
 }

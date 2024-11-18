@@ -1,4 +1,4 @@
-import { readProductosRepository, readProductosByCategoryRepository, readProductosBySubCategoryRepository, readProductosByProviderRepository, readProductosByPerishablilityRepository, readProductosByMaxDaysBeforePerishRepository, readProductosByIdRepository, readCategoriasRepository, readSubcategoriasRepository, readProductosByCategoryAndSubcategoryRepository }  from '../repository/productosRead.repository.js';
+import { readProductosRepository, readProductosByCategoryRepository, readProductosBySubCategoryRepository, readProductosByProviderRepository, readProductosByPerishablilityRepository, readProductosByMaxDaysBeforePerishRepository, readProductosByIdRepository, readCategoriasRepository, readSubcategoriasRepository, readProductosByCategoryAndSubcategoryRepository, readProveedoresRepository, readProductosByCategoryAndProviderRepository, readProductosBySubcategoryAndProviderRepository, readProductosByCategoryAndSubcategoryAndProviderRepository }  from '../repository/productosRead.repository.js';
 
 export const readProductosService = async () => {
     try {
@@ -36,6 +36,15 @@ export const readProductosBySubCategoryService = async (subcategory) => {
     }
 }
 
+export const readProductosByProviderService = async (provider) => {
+    try {
+        return readProductosByProviderRepository(provider)
+    } catch (error) {
+        console.error('Error en el Servicio: ', error)
+        throw new Error('Error al obteber los productos')
+    }
+}
+
 export const readProductosByCategoryAndSubcategoryService = async (category, subcategory) => {
     try {
         return readProductosByCategoryAndSubcategoryRepository(category, subcategory)
@@ -45,9 +54,27 @@ export const readProductosByCategoryAndSubcategoryService = async (category, sub
     }
 }
 
-export const readProductosByProviderService = async (provider) => {
+export const readProductosByCategoryAndProviderService = async (category, provider) => {
     try {
-        return readProductosByProviderRepository(provider)
+        return readProductosByCategoryAndProviderRepository(category, provider)
+    } catch (error) {
+        console.error('Error en el Servicio: ', error)
+        throw new Error('Error al obteber los productos')
+    }
+}
+
+export const readProductosBySubcategoryAndProviderService = async (subcategory, provider) => {
+    try {
+        return readProductosBySubcategoryAndProviderRepository(subcategory, provider)
+    } catch (error) {
+        console.error('Error en el Servicio: ', error)
+        throw new Error('Error al obteber los productos')
+    }
+}
+
+export const readProductosByCategoryAndSubcategoryAndProviderService = async (category, subcategory, provider) => {
+    try {
+        return readProductosByCategoryAndSubcategoryAndProviderRepository(category, subcategory, provider)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
         throw new Error('Error al obteber los productos')
@@ -87,5 +114,14 @@ export const readSubcategoriasService = async () => {
     } catch (error) {
         console.error('Error en el Servicio: ', error)
         throw new Error('Error al obteber las subcategorias')
+    }
+}
+
+export const readProveedoresService = async () => {
+    try {
+        return readProveedoresRepository()
+    } catch (error) {
+        console.error('Error en el Servicio: ', error)
+        throw new Error('Error al obteber los proveedores')
     }
 }
