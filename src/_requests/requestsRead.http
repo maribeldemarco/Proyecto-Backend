@@ -1,0 +1,87 @@
+@api = http://localhost:3000
+
+###### Get all products
+GET {{api}}/productos
+
+###### Get a product by id
+### Valid id
+GET {{api}}/productos/19
+### Valid id with no product in db
+GET {{api}}/productos/1
+### Invalid id
+GET {{api}}/productos/asd
+
+###### Get all products by category
+### Valid category
+GET {{api}}/productos/categoria/gatos
+### Invalid category
+GET {{api}}/productos/categoria/dinosaurios
+
+###### Get all products by subcategory
+### Valid subcategory
+GET {{api}}/productos/subcategoria/alimentos
+### Invalid subcategory
+GET {{api}}/productos/subcategoria/sueños
+
+###### Get all products by category and subcategory
+### Valid category and subcategory
+GET {{api}}/productos/categoriaYsubcategoria/gatos/alimentos
+### Invalid category
+GET {{api}}/productos/categoriaYsubcategoria/dinosaurios/alimentos
+### Invalid subcategory
+GET {{api}}/productos/categoriaYsubcategoria/gatos/sueños
+
+###### Get all products by provider
+### Valid provider
+GET {{api}}/productos/proveedor/PetWorld
+### Invalid provider
+GET {{api}}/productos/proveedor/Amazon
+
+###### Get all products by category and provider
+### Valid category and provider
+GET {{api}}/productos/categoriaYproveedor/gatos/PetWorld
+### Invalid category
+GET {{api}}/productos/categoriaYproveedor/dinosaurios/PetWorld
+### Invalid provider
+GET {{api}}/productos/categoriaYproveedor/gatos/Amazon
+
+###### Get all products by subcategory and provider
+### Valid subcategory and provider
+GET {{api}}/productos/subcategoriaYproveedor/alimentos/PetWorld
+### Invalid subcategory
+GET {{api}}/productos/subcategoriaYproveedor/sueños/PetWorld
+### Invalid provider
+GET {{api}}/productos/subcategoriaYproveedor/alimentos/Amazon
+
+###### Get all products by category and subcategory and provider
+### Valid category, subcategory and provider
+GET {{api}}/productos/categoriaYsubcategoriaYproveedor/gatos/alimentos/Happy Pets
+### Invalid category
+GET {{api}}/productos/categoriaYsubcategoriaYproveedor/dinosaurios/alimentos/PetWorld
+### Invalid subcategory
+GET {{api}}/productos/categoriaYsubcategoriaYproveedor/gatos/sueños/PetWorld
+### Invalid provider
+GET {{api}}/productos/categoriaYsubcategoriaYproveedor/gatos/alimentos/Amazon
+
+###### Get all products by if perishes
+### Valid if perishes ('si')
+GET {{api}}/productos/perece/si
+### Valid if perishes ('no')
+GET {{api}}/productos/perece/no
+### Invalid if perishes
+GET {{api}}/productos/perece/asd
+
+###### Get all products by max days before perish
+### Valid max days before perish
+GET {{api}}/productos/dias-perece/10
+### Invalid max days before perish
+GET {{api}}/productos/dias-perece/asd
+
+###### Get all categories
+GET {{api}}/categorias
+
+###### Get all subcategories
+GET {{api}}/subcategorias
+
+###### Get all providers
+GET {{api}}/proveedores
