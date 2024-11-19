@@ -1,4 +1,4 @@
-import { getConnection, queries, sql } from '../database/exports.js'
+import { getConnection, queriesUpdate, sql } from '../database/exports.js'
 
 const updateProductoRepository = async (id, producto) => {
     try {
@@ -13,7 +13,7 @@ const updateProductoRepository = async (id, producto) => {
             .input('Stock', sql.Int, producto.Stock)
             .input('Perece', sql.Bit, producto.Perece)
             .input('Fecha_Vencimiento', sql.Date, producto.Fecha_Vencimiento || null)
-            .query(queries.updateProductos);
+            .query(queriesUpdate.updateProductos);
 
         return resultado.rowsAffected[0] > 0;
 

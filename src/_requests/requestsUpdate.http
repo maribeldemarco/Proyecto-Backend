@@ -1,7 +1,7 @@
 @api = http://localhost:3000
 
 
-PUT {{api}}/api/productos/4
+PUT {{api}}/productos/4
 Content-Type: application/json
 
 {
