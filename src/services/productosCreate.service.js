@@ -1,4 +1,4 @@
-import { createProductRepository } from '../create-repository/create-repository.js';
+import { createProductRepository } from '../repository/productosCreate.repository.js';
 
 export const createProductService = async (nuevoProducto) => {
     try {

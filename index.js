@@ -1,42 +1,25 @@
-import express from 'express';
+import express from  'express';
 import { expressConfig } from './src/config.js';
-import { getConnection } from './src/database/conexion.js';
-import createRoutes from './src/create-routes/create-routes.js';  
-import { createProductController } from './src/create-controller/create-controller.js';  // Ajusta la ruta según sea necesario
+import productosDeleteRoute from './src/routes/productosDelete.route.js';
+import productosReadRoutes from './src/routes/productosRead.routes.js';
+import createRoutes from './src/routes/productosCreate.route.js';  
+
 import cors from 'cors';
 
 const app = express();
-app.use(cors({
-  origin: '*' // Permite todos los orígenes
-}));
-app.use(express.json()); 
+app.set('port', expressConfig.port)
+app.set('host', expressConfig.host);
 
-async function startServer() {
-  try {
-    // Esperar la conexión a la base de datos antes de iniciar el servidor
-    await getConnection();
+app.use(express.json())
+app.use(cors())
+app.use(productosDeleteRoute)
+app.use(productosReadRoutes)
+app.use(createRoutes);  
 
-    // Configurar el servidor
-    app.set('port', expressConfig.port);
-    app.set('host', expressConfig.host);
+app.get('/', (req, res) => {
+  res.send('Raiz del servidor')
+})
 
-    // Ruta principal
-    app.get('/', (req, res) => {
-      res.send('Raiz del servidor');
-    });
-    
-    // Usar las rutas definidas en create-routes
-    //app.post('/productos', createProductController); // Esto va a llamar al controlador que maneja la creación
-    app.use(createRoutes);  // Esto usará las rutas definidas en routes.js
-
-    // Iniciar el servidor
-    app.listen(app.get('port'), app.get('host'), () => {
-      console.log(`Servidor funcionando en http://${app.get('host')}:${app.get('port')}`);
-    });
-  } catch (error) {
-    console.error('Error al conectar a la base de datos:', error);
-    process.exit(1); // Salir si la conexión falla
-  }
-}
-
-startServer();
+app.listen(app.get('port'), app.get('host'), () => {
+  console.log(`Servidor funcionando en http://${app.get('host')}:${app.get('port')}`)
+})

@@ -1,5 +1,5 @@
 import express from 'express';
-import { createProductController } from '../create-controller/create-controller.js';  // Verifica la ruta
+import { createProductController } from '../controllers/productosCreate.controller.js';  // Verifica la ruta
 
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-import { createProductService } from '../create-service/create-service.js';
+import { createProductService } from '../services/productosCreate.service.js';
 
 export const createProductController = async (req, res) => {
     try {
