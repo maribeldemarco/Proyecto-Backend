@@ -5,7 +5,7 @@ export const readProductosService = async () => {
         return readProductosRepository()
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -14,7 +14,7 @@ export const readProductosByIdService = async (id) => {
         return readProductosByIdRepository(id)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -23,7 +23,7 @@ export const readProductosByCategoryService = async (category) => {
         return readProductosByCategoryRepository(category)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -32,7 +32,7 @@ export const readProductosBySubCategoryService = async (subcategory) => {
         return readProductosBySubCategoryRepository(subcategory)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -41,7 +41,7 @@ export const readProductosByProviderService = async (provider) => {
         return readProductosByProviderRepository(provider)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -50,7 +50,7 @@ export const readProductosByCategoryAndSubcategoryService = async (category, sub
         return readProductosByCategoryAndSubcategoryRepository(category, subcategory)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -59,7 +59,7 @@ export const readProductosByCategoryAndProviderService = async (category, provid
         return readProductosByCategoryAndProviderRepository(category, provider)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -68,7 +68,7 @@ export const readProductosBySubcategoryAndProviderService = async (subcategory, 
         return readProductosBySubcategoryAndProviderRepository(subcategory, provider)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -77,7 +77,7 @@ export const readProductosByCategoryAndSubcategoryAndProviderService = async (ca
         return readProductosByCategoryAndSubcategoryAndProviderRepository(category, subcategory, provider)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -86,7 +86,7 @@ export const readProductosByPerishablilityService = async (perishable) => {
         return readProductosByPerishablilityRepository(perishable)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -95,7 +95,7 @@ export const readProductosByMaxDaysToPerishService = async (days) => {
         return readProductosByMaxDaysBeforePerishRepository(days)
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los productos')
+        throw new Error('Error al obtener los productos')
     }
 }
 
@@ -104,7 +104,7 @@ export const readCategoriasService = async () => {
         return readCategoriasRepository()
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber las categorias')
+        throw new Error('Error al obtener las categorias')
     }
 }
 
@@ -113,7 +113,7 @@ export const readSubcategoriasService = async () => {
         return readSubcategoriasRepository()
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber las subcategorias')
+        throw new Error('Error al obtener las subcategorias')
     }
 }
 
@@ -122,6 +122,6 @@ export const readProveedoresService = async () => {
         return readProveedoresRepository()
     } catch (error) {
         console.error('Error en el Servicio: ', error)
-        throw new Error('Error al obteber los proveedores')
+        throw new Error('Error al obtener los proveedores')
     }
 }

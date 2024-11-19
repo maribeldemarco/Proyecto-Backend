@@ -85,7 +85,7 @@ export const readProductosByCategoryAndProviderController = async (req, res) => 
         let { category, provider } = req.params
         let productos = await readProductosByCategoryAndProviderService(category, provider)
 
-        productos.recordset.length === 0 ? res.send('No hay datos sobre la categoria/subcategoria o alguna no existe') : res.send(productos.recordset)
+        productos.recordset.length === 0 ? res.send('No hay datos sobre la categoria/proveedor o alguna no existe') : res.send(productos.recordset)
 
     } catch (error) {
         console.error(error)
@@ -98,7 +98,7 @@ export const readProductosBySubcategoryAndProviderController = async (req, res) 
         let { Subcategory, provider } = req.params
         let productos = await readProductosBySubcategoryAndProviderService(Subcategory, provider)
 
-        productos.recordset.length === 0 ? res.send('No hay datos sobre la categoria/subcategoria o alguna no existe') : res.send(productos.recordset)
+        productos.recordset.length === 0 ? res.send('No hay datos sobre la subcategoria/proveedor o alguna no existe') : res.send(productos.recordset)
 
     } catch (error) {
         console.error(error)
@@ -111,7 +111,7 @@ export const readProductosByCategoryAndSubcategoryAndProviderController = async 
         let { category, subcategory, provider } = req.params
         let productos = await readProductosByCategoryAndSubcategoryAndProviderService(category, subcategory, provider)
 
-        productos.recordset.length === 0 ? res.send('No hay datos sobre la categoria/subcategoria o alguna no existe') : res.send(productos.recordset)
+        productos.recordset.length === 0 ? res.send('No hay datos sobre la categoria/subcategoria/proveedor o alguna no existe') : res.send(productos.recordset)
 
     } catch (error) {
         console.error(error)
