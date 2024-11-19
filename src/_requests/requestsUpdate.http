@@ -1,0 +1,16 @@
+@api = http://localhost:3000
+
+
+PUT {{api}}/productos/4
+Content-Type: application/json
+
+{
+    "ProveedorID": 2, 
+    "CategoriaSubcategoriaID": 3,
+    "Nombre": "Norberto Juarez",
+    "Marca": "Nueva marca",
+    "Stock": 50,
+    "Perece": true,
+    "Fecha_Vencimiento": "2025-12-31"
+    
+}
