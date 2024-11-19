@@ -7,7 +7,7 @@ Content-Type: application/json
 {
     "ProveedorID": 2, 
     "CategoriaSubcategoriaID": 3,
-    "Nombre": "Nuevo nombre del producto",
+    "Nombre": "Norberto Juarez",
     "Marca": "Nueva marca",
     "Stock": 50,
     "Perece": true,
