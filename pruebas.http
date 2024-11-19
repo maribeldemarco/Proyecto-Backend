@@ -1,0 +1,10 @@
+POST http://localhost:3000/productos 
+Content-Type:application/json
+
+{   "ProveedorID": "1",
+    "CategoriaSubcategoriaID":"1",
+    "Nombre": "Alimento Premium para Gatos chicos",
+    "Marca": "Catlife",
+    "Stock": "300",
+    "Perece": "0",
+    "Fecha_Vencimiento": "2024-11-17" }
