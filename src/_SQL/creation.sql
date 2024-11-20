@@ -1,3 +1,9 @@
+-- Create dataBase 
+CREATE DATABASE PlusPet
+
+-- Use dataBase
+USE PlusPet
+
 -- Create Categorias table
 CREATE TABLE Categorias (
     Nombre VARCHAR(255) NOT NULL PRIMARY KEY
