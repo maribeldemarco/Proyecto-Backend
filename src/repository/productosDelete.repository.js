@@ -5,7 +5,6 @@ export const eliminarProductosRepository = async (id) => {
 
     try {
         const productoEncontrado = await pool.request().input('id', sql.Int, id).query(queries.getProductoById)
-        //console.log('Producto encontrado a eliminar', productoEncontrado);
         if(productoEncontrado.recordset.length == 0) {
             console.log('Producto no encontrado');
         }else {
