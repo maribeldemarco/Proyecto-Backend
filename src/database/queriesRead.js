@@ -4,7 +4,7 @@ import { database } from "../config.js"
 export const queriesRead = {
     readProductos: `
         USE ${database};
-        SELECT pd.Nombre, pd.Marca, pd.Stock,
+        SELECT pd.ProductoID, pd.Nombre, pd.Marca, pd.Stock,
         CASE
             WHEN pd.Perece = 1 THEN 'Si'
             ELSE 'No'
@@ -12,17 +12,19 @@ export const queriesRead = {
         CASE
             WHEN pd.Fecha_Vencimiento IS NULL THEN '-'
             ELSE CONVERT(varchar, pd.Fecha_Vencimiento, 103)
-            END AS Vencimiento
+            END AS Vencimiento,
+        cs.CategoriaNombre, cs.SubcategoriaNombre,
+        pv.Nombre as Proveedor
         FROM productos pd
+        INNER JOIN CategoriasSubcategorias cs on pd.CategoriaSubcategoriaID = cs.CategoriasSubcategoriasID
+        INNER JOIN proveedores pv on pd.ProveedorID = pv.ProveedorID
         `,
-    joinCategorySubcategory: `CategoriasSubcategorias cs on pd.CategoriaSubcategoriaID = cs.CategoriasSubcategoriasID`,
-    joinProvider: `proveedores pv on pd.ProveedorID = pv.ProveedorID`,
     readById: `pd.ProductoID = @id`,
     readByCategory: `cs.CategoriaNombre = @category`,
     readBySubcategory: `cs.SubcategoriaNombre = @subcategory`,
     readByProvider: `pv.Nombre = @provider`,
     readByPerishablility: `pd.Perece = @perishable;`,
-    readByMaxDaysToToPerish:`pd.Perece = 1 AND pd.Fecha_Vencimiento <= DATEADD(day, @days, GETDATE());`,
+    readByMaxDaysToPerish:`pd.Perece = 1 AND pd.Fecha_Vencimiento <= DATEADD(day, @days, GETDATE());`,
     readTable:
         `USE ${database};
         SELECT *

@@ -3,7 +3,8 @@ import { getConnection, queriesRead as queries, sql } from '../database/exports.
 export const readProductosRepository = async () => {
     const pool = await getConnection();
     try {
-        const resultado = await pool.request().query(queries.readProductos);
+        const resultado = await pool.request()
+            .query(`${queries.readProductos}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -18,10 +19,7 @@ export const readProductosByIdRepository = async (id) => {
     try {
         const resultado = await pool.request()
             .input('id', sql.Int, id)
-            .query(`
-                ${queries.readProductos}
-                WHERE ${queries.readById}
-            `);
+            .query(`${queries.readProductos} WHERE ${queries.readById}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -37,11 +35,7 @@ export const readProductosByCategoryRepository = async (category) => {
     try {
         const resultado = await pool.request()
             .input('category', sql.NVarChar, category)
-            .query(`
-                ${queries.readProductos}
-                INNER JOIN ${queries.joinCategorySubcategory}
-                WHERE ${queries.readByCategory}
-            `);
+            .query(`${queries.readProductos} WHERE ${queries.readByCategory}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -56,11 +50,7 @@ export const readProductosBySubCategoryRepository = async (subcategory) => {
     try {
         const resultado = await pool.request()
             .input('subcategory', sql.NVarChar, subcategory)
-            .query(`
-                ${queries.readProductos}
-                INNER JOIN ${queries.joinCategorySubcategory}
-                WHERE ${queries.readBySubcategory}
-            `);
+            .query(`${queries.readProductos} WHERE ${queries.readBySubcategory}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -75,11 +65,7 @@ export const readProductosByProviderRepository = async (provider) => {
     try {
         const resultado = await pool.request()
             .input('provider', sql.NVarChar, provider)
-            .query(`
-                ${queries.readProductos}
-                INNER JOIN ${queries.joinCategorySubcategory}
-                WHERE ${queries.readByProvider}
-            `);
+            .query(`${queries.readProductos}WHERE ${queries.readByProvider}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -95,11 +81,7 @@ export const readProductosByCategoryAndSubcategoryRepository = async (category, 
         const resultado = await pool.request()
             .input('category', sql.NVarChar, category)
             .input('subcategory', sql.NVarChar, subcategory)
-            .query(`
-                ${queries.readProductos}
-                INNER JOIN ${queries.joinCategorySubcategory}
-                WHERE ${queries.readByCategory} AND ${queries.readBySubcategory}
-            `);
+            .query(`${queries.readProductos} WHERE ${queries.readByCategory} AND ${queries.readBySubcategory}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -115,12 +97,7 @@ export const readProductosByCategoryAndProviderRepository = async (category, pro
         const resultado = await pool.request()
             .input('category', sql.NVarChar, category)
             .input('provider', sql.NVarChar, provider)
-            .query(`
-                ${queries.readProductos}
-                INNER JOIN ${queries.joinCategorySubcategory}
-                INNER JOIN ${queries.joinProvider}
-                WHERE ${queries.readByCategory} AND ${queries.readByProvider}
-            `);
+            .query(`${queries.readProductos} WHERE ${queries.readByCategory} AND ${queries.readByProvider}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -136,12 +113,7 @@ export const readProductosBySubcategoryAndProviderRepository = async (subcategor
         const resultado = await pool.request()
             .input('subcategory', sql.NVarChar, subcategory)
             .input('provider', sql.NVarChar, provider)
-            .query(`
-                ${queries.readProductos}
-                INNER JOIN ${queries.joinCategorySubcategory}
-                INNER JOIN ${queries.joinProvider}
-                WHERE ${queries.readBySubcategory} AND ${queries.readByProvider}
-            `);
+            .query(`${queries.readProductos} WHERE ${queries.readBySubcategory} AND ${queries.readByProvider}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -158,12 +130,7 @@ export const readProductosByCategoryAndSubcategoryAndProviderRepository = async 
             .input('category', sql.NVarChar, category)
             .input('subcategory', sql.NVarChar, subcategory)
             .input('provider', sql.NVarChar, provider)
-            .query(`
-                ${queries.readProductos}
-                INNER JOIN ${queries.joinCategorySubcategory}
-                INNER JOIN ${queries.joinProvider}
-                WHERE ${queries.readByCategory} AND ${queries.readBySubcategory} AND ${queries.readByProvider}
-            `);
+            .query(`${queries.readProductos} WHERE ${queries.readByCategory} AND ${queries.readBySubcategory} AND ${queries.readByProvider}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -178,10 +145,7 @@ export const readProductosByPerishablilityRepository = async (perishable) => {
     try {
         const resultado = await pool.request()
             .input('perishable', sql.Int, perishable)
-            .query(`
-                ${queries.readProductos}
-                WHERE ${queries.readByPerishablility}
-            `);
+            .query(`${queries.readProductos} WHERE ${queries.readByPerishablility}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -196,10 +160,7 @@ export const readProductosByMaxDaysBeforePerishRepository = async (days) => {
     try {
         const resultado = await pool.request()
             .input('days', sql.Int, days)
-            .query(`
-                ${queries.readProductos}
-                WHERE ${queries.readByMaxDaysBeforePerish}
-            `);
+            .query(`${queries.readProductos}WHERE ${queries.readByMaxDaysToPerish}`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -213,9 +174,7 @@ export const readCategoriasRepository = async () => {
     const pool = await getConnection();
     try {
         const resultado = await pool.request()
-            .query(`
-                ${queries.readTable} categorias
-            `);
+            .query(`${queries.readTable} categorias`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -229,9 +188,7 @@ export const readSubcategoriasRepository = async () => {
     const pool = await getConnection();
     try {
         const resultado = await pool.request()
-        .query(`
-            ${queries.readTable} subcategorias
-        `);
+            .query(`${queries.readTable} subcategorias`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
@@ -245,9 +202,7 @@ export const readProveedoresRepository = async () => {
     const pool = await getConnection();
     try {
         const resultado = await pool.request()
-        .query(`
-            ${queries.readTable} proveedores
-        `);
+            .query(`${queries.readTable} proveedores`);
         return resultado
     } catch (error) {
         console.error('Error en el Repositorio: ', error)
