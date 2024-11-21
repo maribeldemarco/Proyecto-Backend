@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { readProductosController, readProductosByCategoryController, readProductosBySubCategoryController, readProductosByProviderController, readProductosByPerishabilityController, readProductosByMaxDaysToPerishController, readProductosByIdController, readCategoriasController, readSubcategoriasController, readProductosByCategoryAndSubcategoryController, readProveedoresController, readProductosByCategoryAndProviderController, readProductosBySubcategoryAndProviderController, readProductosByCategoryAndSubcategoryAndProviderController } from  "../controllers/productosRead.controllers.js";
+import { readProductosController, readProductosByCategoryController, readProductosBySubCategoryController, readProductosByProviderController, readProductosByPerishabilityController, readProductosByMaxDaysToPerishController, readProductosByIdController, readCategoriasController, readSubcategoriasController, readProductosByCategoryAndSubcategoryController, readProveedoresController, readProductosByCategoryAndProviderController, readProductosBySubcategoryAndProviderController, readProductosByCategoryAndSubcategoryAndProviderController, readCategoriasSubcategoriasController } from  "../controllers/productosRead.controllers.js";
 
 const router = Router()
 
@@ -18,5 +18,6 @@ router.get('/productos/dias-perece/:days', readProductosByMaxDaysToPerishControl
 router.get('/categorias', readCategoriasController)
 router.get('/subcategorias', readSubcategoriasController)
 router.get('/proveedores', readProveedoresController)
+router.get('/categoriassubcategorias', readCategoriasSubcategoriasController)
 
 export default router
