@@ -85,3 +85,6 @@ GET {{api}}/subcategorias
 
 ###### Get all providers
 GET {{api}}/proveedores
+
+###### Get category and subcategory table
+GET {{api}}/categoriasSubcategorias

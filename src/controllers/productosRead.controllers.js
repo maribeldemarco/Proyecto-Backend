@@ -1,4 +1,4 @@
-import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService, readProductosByProviderService, readProductosByPerishablilityService, readProductosByMaxDaysToPerishService, readProductosByIdService, readCategoriasService, readSubcategoriasService, readProductosByCategoryAndSubcategoryService, readProveedoresService, readProductosByCategoryAndProviderService, readProductosBySubcategoryAndProviderService, readProductosByCategoryAndSubcategoryAndProviderService } from '../services/productosRead.service.js';
+import { readProductosService, readProductosByCategoryService, readProductosBySubCategoryService, readProductosByProviderService, readProductosByPerishablilityService, readProductosByMaxDaysToPerishService, readProductosByIdService, readCategoriasService, readSubcategoriasService, readProductosByCategoryAndSubcategoryService, readProveedoresService, readProductosByCategoryAndProviderService, readProductosBySubcategoryAndProviderService, readProductosByCategoryAndSubcategoryAndProviderService, readCategoriasSubcategoriasService } from '../services/productosRead.service.js';
 
 export const readProductosController = async (req, res) => {
     try {
@@ -185,5 +185,17 @@ export const readProveedoresController = async (req, res) => {
     } catch (error) {
         console.error(error)
         res.status(500).send({ message: 'Error al obtener los proveedores' })
+    }
+}
+
+export const readCategoriasSubcategoriasController = async (req, res) => {
+    try {
+        let proveedores = await readCategoriasSubcategoriasService()
+
+        proveedores.recordset.length === 0 ? res.send('La base de datos está vacía') : res.send(proveedores.recordset)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: 'Error al obtener las CategoriasSubcategorias' })
     }
 }

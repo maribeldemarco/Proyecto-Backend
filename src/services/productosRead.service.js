@@ -1,4 +1,4 @@
-import { readProductosRepository, readProductosByCategoryRepository, readProductosBySubCategoryRepository, readProductosByProviderRepository, readProductosByPerishablilityRepository, readProductosByMaxDaysBeforePerishRepository, readProductosByIdRepository, readCategoriasRepository, readSubcategoriasRepository, readProductosByCategoryAndSubcategoryRepository, readProveedoresRepository, readProductosByCategoryAndProviderRepository, readProductosBySubcategoryAndProviderRepository, readProductosByCategoryAndSubcategoryAndProviderRepository }  from '../repository/productosRead.repository.js';
+import { readProductosRepository, readProductosByCategoryRepository, readProductosBySubCategoryRepository, readProductosByProviderRepository, readProductosByPerishablilityRepository, readProductosByMaxDaysBeforePerishRepository, readProductosByIdRepository, readCategoriasRepository, readSubcategoriasRepository, readProductosByCategoryAndSubcategoryRepository, readProveedoresRepository, readProductosByCategoryAndProviderRepository, readProductosBySubcategoryAndProviderRepository, readProductosByCategoryAndSubcategoryAndProviderRepository, readCategoriasSubcategoriasRepository }  from '../repository/productosRead.repository.js';
 
 export const readProductosService = async () => {
     try {
@@ -120,6 +120,15 @@ export const readSubcategoriasService = async () => {
 export const readProveedoresService = async () => {
     try {
         return readProveedoresRepository()
+    } catch (error) {
+        console.error('Error en el Servicio: ', error)
+        throw new Error('Error al obtener los proveedores')
+    }
+}
+
+export const readCategoriasSubcategoriasService = async () => {
+    try {
+        return readCategoriasSubcategoriasRepository()
     } catch (error) {
         console.error('Error en el Servicio: ', error)
         throw new Error('Error al obtener los proveedores')
