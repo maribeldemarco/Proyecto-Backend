@@ -13,8 +13,8 @@ export const queriesRead = {
             WHEN pd.Fecha_Vencimiento IS NULL THEN '-'
             ELSE CONVERT(varchar, pd.Fecha_Vencimiento, 103)
             END AS Vencimiento,
-        cs.CategoriaNombre, cs.SubcategoriaNombre,
-        pv.Nombre as Proveedor
+        cs.*,
+        pv.ProveedorID, pv.Nombre as Proveedor
         FROM productos pd
         INNER JOIN CategoriasSubcategorias cs on pd.CategoriaSubcategoriaID = cs.CategoriasSubcategoriasID
         INNER JOIN proveedores pv on pd.ProveedorID = pv.ProveedorID
