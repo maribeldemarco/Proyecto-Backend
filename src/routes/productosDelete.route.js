@@ -3,6 +3,6 @@ import { eliminarProductosController } from "../controllers/productosDelete.cont
 
 const router = Router()
 
-router.delete('/producto/:id', eliminarProductosController)
+router.delete('/productos/:id', eliminarProductosController)
 
 export default router
