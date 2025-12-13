@@ -16,8 +16,8 @@ const dbSQLConfig = {
     database: database,
     port: parseInt(process.env.PORT_DB, 10),
     options: {
-        trustServerCertificate: true,
-   encrypt: false , 
+    trustServerCertificate: false,
+    encrypt: true
 }
 }
 
