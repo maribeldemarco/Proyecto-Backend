@@ -1,21 +1,21 @@
-import { getConnection, queriesUpdate, sql } from '../database/exports.js'
+import { getConnection, queriesUpdate } from '../database/exports.js'
 
 const updateProductoRepository = async (id, producto) => {
     try {
         const pool = await getConnection();
         
-        const resultado = await pool.request()
-            .input('ProductoID', sql.Int, id)
-            .input('ProveedorID', sql.Int, producto.ProveedorID)
-            .input('CategoriaSubcategoriaID', sql.Int, producto.CategoriaSubcategoriaID)
-            .input('Nombre', sql.VarChar(255), producto.Nombre)
-            .input('Marca', sql.VarChar(255), producto.Marca)
-            .input('Stock', sql.Int, producto.Stock)
-            .input('Perece', sql.Bit, producto.Perece)
-            .input('Fecha_Vencimiento', sql.Date, producto.Fecha_Vencimiento || null)
-            .query(queriesUpdate.updateProductos);
+        const resultado = await pool.query(queriesUpdate.updateProductos, [
+            producto.ProveedorID,
+            producto.CategoriaSubcategoriaID,
+            producto.Nombre,
+            producto.Marca,
+            producto.Stock,
+            producto.Perece,
+            producto.Fecha_Vencimiento || null,
+            id  // El ID va último porque está en el WHERE
+        ]);
 
-        return resultado.rowsAffected[0] > 0;
+        return resultado.rowCount > 0;
 
     } catch (error) {
         console.error('Error en updateProductoRepository:', error);

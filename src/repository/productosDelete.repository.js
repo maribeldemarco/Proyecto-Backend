@@ -1,25 +1,28 @@
-import { getConnection, sql, queries } from '../database/exports.js'
+import { getConnection } from '../database/exports.js'
+import queries from '../database/queries.js'
 
 export const eliminarProductosRepository = async (id) => {
     const pool = await getConnection();
 
     try {
-        const productoEncontrado = await pool.request().input('id', sql.Int, id).query(queries.getProductoById)
-        if(productoEncontrado.recordset.length == 0) {
+        const productoEncontrado = await pool.query(queries.getProductoById, [id]);
+        
+        if(productoEncontrado.rows.length == 0) {
             console.log('Producto no encontrado');
-        }else {
+            return null;
+        } else {
             console.log('Se eliminó el siguiente producto de la lista')
-            console.table(productoEncontrado.recordset[0])
+            console.table(productoEncontrado.rows[0])
         }
         
-        const productoEliminado = productoEncontrado.recordset[0]
+        const productoEliminado = productoEncontrado.rows[0];
 
-        await pool.request().input('id', sql.Int, id).query(queries.eliminarProducto)
-        return productoEliminado
+        await pool.query(queries.eliminarProducto, [id]);
+        
+        return productoEliminado;
     } catch (error) {
         console.error('Error en el repositorio', error)
         throw new Error('Error al eliminar el producto de la base de datos')
-    } finally {
-        pool.close()
     }
+    // NO cerramos el pool
 }

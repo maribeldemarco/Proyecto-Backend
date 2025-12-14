@@ -1,29 +1,29 @@
-import { getConnection, sql, queries } from '../database/exports.js';
+import { getConnection } from '../database/exports.js';
+import queries from '../database/queries.js';
 
 export const createProductRepository = async (nuevoProducto) => {
     const { ProveedorID, CategoriaSubcategoriaID, Nombre, Marca, Stock, Perece, Fecha_Vencimiento } = nuevoProducto;
     const pool = await getConnection();
 
     try {
-        const resultado = await pool.request()
-            .input('ProveedorID', sql.Int, ProveedorID)
-            .input('CategoriaSubcategoriaID', sql.Int, CategoriaSubcategoriaID)
-            .input('Nombre', sql.VarChar, Nombre)
-            .input('Marca', sql.VarChar, Marca)
-            .input('Stock', sql.Int, Stock)
-            .input('Perece', sql.Bit, Perece)
-            .input('Fecha_Vencimiento', sql.Date, Fecha_Vencimiento )
-            .query(queries.createProduct);
+        // PostgreSQL usa un array de valores en orden
+        const resultado = await pool.query(queries.createProduct, [
+            ProveedorID,
+            CategoriaSubcategoriaID,
+            Nombre,
+            Marca,
+            Stock,
+            Perece,
+            Fecha_Vencimiento
+        ]);
 
-        console.log('el Producto fue  creado');
-        console.table(resultado.recordset);
+        console.log('el Producto fue creado');
+        console.table(resultado.rows);
 
-        return resultado.recordset;
+        return resultado.rows;
     } catch (error) {
         console.error('Error al crear el producto:', error);
-        throw new Error('Error en la consulta ');
-    } finally {
-        pool.close();  
+        throw new Error('Error en la consulta');
     }
+    // NO cerramos el pool en PostgreSQL - se reutiliza
 };
-
