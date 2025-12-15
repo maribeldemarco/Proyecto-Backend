@@ -18,7 +18,9 @@ const dbConfig = {
     port: parseInt(process.env.PORT_DB, 10) || 5432,  // PostgreSQL usa puerto 5432 por defecto
     ssl: {
         rejectUnauthorized: false  // Supabase requiere SSL
-    }
+    },
+    family: 4  // ⬅️ AGREGAR ESTA LÍNEA para forzar IPv4
+
 }
 
 export {
