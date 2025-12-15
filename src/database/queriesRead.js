@@ -22,7 +22,7 @@ export const queriesRead = {
     readByCategory: `cs.CategoriaNombre = $1`,
     readBySubcategory: `cs.SubcategoriaNombre = $1`,
     readByProvider: `pv.Nombre = $1`,
-    readByPerishablility: `pd.Perece = $1`,
+    readByPerishablility: `pd.Perece = $1::integer`,  // ✅ CONVERSIÓN A INTEGER
     readByMaxDaysToPerish: `pd.Perece = 1 AND pd.Fecha_Vencimiento <= CURRENT_DATE + INTERVAL '$1 days'`,
     readTable: `SELECT * FROM `,
 }

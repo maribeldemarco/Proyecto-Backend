@@ -3,8 +3,7 @@ import { readProductosController, readProductosByCategoryController, readProduct
 
 const router = Router()
 
-router.get('/productos', readProductosController)
-router.get('/productos/:id', readProductosByIdController)
+// ✅ Rutas específicas PRIMERO (antes de las genéricas con :id)
 router.get('/productos/categoria/:category', readProductosByCategoryController)
 router.get('/productos/subcategoria/:subcategory', readProductosBySubCategoryController)
 router.get('/productos/proveedor/:provider', readProductosByProviderController)
@@ -15,6 +14,13 @@ router.get('/productos/categoriaYsubcategoriaYproveedor/:category/:subcategory/:
 router.get('/productos/perece/:option', readProductosByPerishabilityController)
 router.get('/productos/dias-perece/:days', readProductosByMaxDaysToPerishController)
 
+// ✅ Ruta genérica AL FINAL
+router.get('/productos/:id', readProductosByIdController)
+
+// ✅ Ruta base de productos
+router.get('/productos', readProductosController)
+
+// Otras rutas
 router.get('/categorias', readCategoriasController)
 router.get('/subcategorias', readSubcategoriasController)
 router.get('/proveedores', readProveedoresController)
