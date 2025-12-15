@@ -9,22 +9,26 @@ const expressConfig = {
 
 const database = process.env.NAME_DB;
 
-// Configuración para PostgreSQL (Supabase)
-const dbConfig = {
+// Si existe DATABASE_URL (Session Pooler - IPv4 compatible), úsala
+// Si no, usa las variables individuales (Direct Connection - solo IPv6)
+const dbConfig = process.env.DATABASE_URL ? {
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+} : {
     user: process.env.USER_DB,
     password: process.env.PASSWORD_DB,
-    host: process.env.SERVER_DB,  // Cambió de "server" a "host"
+    host: process.env.SERVER_DB,
     database: database,
-    port: parseInt(process.env.PORT_DB, 10) || 5432,  // PostgreSQL usa puerto 5432 por defecto
+    port: parseInt(process.env.PORT_DB, 10) || 5432,
     ssl: {
-        rejectUnauthorized: false  // Supabase requiere SSL
-    },
-    family: 4  // ⬅️ AGREGAR ESTA LÍNEA para forzar IPv4
-
-}
+        rejectUnauthorized: false
+    }
+};
 
 export {
     expressConfig,
-    dbConfig,  // Cambió el nombre
+    dbConfig,
     database
 }
