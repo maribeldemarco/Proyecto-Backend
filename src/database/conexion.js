@@ -1,6 +1,10 @@
 import pkg from 'pg';
 const { Pool } = pkg;
 import { dbConfig } from '../config.js'
+import dns from 'dns';  // ⬅️ AGREGAR
+
+// FORZAR IPv4 A NIVEL SISTEMA
+dns.setDefaultResultOrder('ipv4first');  // ⬅️ AGREGAR
 
 let pool;
 
