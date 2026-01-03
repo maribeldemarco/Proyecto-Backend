@@ -95,8 +95,8 @@ export const readProductosByCategoryAndProviderController = async (req, res) => 
 
 export const readProductosBySubcategoryAndProviderController = async (req, res) => {
     try {
-        let { Subcategory, provider } = req.params
-        let productos = await readProductosBySubcategoryAndProviderService(Subcategory, provider)
+        let { subcategory, provider } = req.params
+        let productos = await readProductosBySubcategoryAndProviderService(subcategory, provider)
 
         productos.rows.length === 0 ? res.send('No hay datos sobre la subcategoria/proveedor o alguna no existe') : res.send(productos.rows)
 

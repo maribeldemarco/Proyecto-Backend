@@ -67,11 +67,12 @@ export const readProductosByProviderRepository = async (provider) => {
     }
 }
 
+// ✅ ARREGLADO: Ahora usa $1 y $2
 export const readProductosByCategoryAndSubcategoryRepository = async (category, subcategory) => {
     const pool = await getConnection();
     try {
         const resultado = await pool.query(
-            `${queries.readProductos} WHERE ${queries.readByCategory} AND ${queries.readBySubcategory}`,
+            `${queries.readProductos} WHERE cs.categorianombre = $1 AND cs.subcategorianombre = $2`,
             [category, subcategory]
         );
         return resultado;
@@ -81,11 +82,12 @@ export const readProductosByCategoryAndSubcategoryRepository = async (category, 
     }
 }
 
+// ✅ ARREGLADO: Ahora usa $1 y $2
 export const readProductosByCategoryAndProviderRepository = async (category, provider) => {
     const pool = await getConnection();
     try {
         const resultado = await pool.query(
-            `${queries.readProductos} WHERE ${queries.readByCategory} AND ${queries.readByProvider}`,
+            `${queries.readProductos} WHERE cs.categorianombre = $1 AND pv.nombre = $2`,
             [category, provider]
         );
         return resultado;
@@ -95,11 +97,12 @@ export const readProductosByCategoryAndProviderRepository = async (category, pro
     }
 }
 
+// ✅ ARREGLADO: Ahora usa $1 y $2
 export const readProductosBySubcategoryAndProviderRepository = async (subcategory, provider) => {
     const pool = await getConnection();
     try {
         const resultado = await pool.query(
-            `${queries.readProductos} WHERE ${queries.readBySubcategory} AND ${queries.readByProvider}`,
+            `${queries.readProductos} WHERE cs.subcategorianombre = $1 AND pv.nombre = $2`,
             [subcategory, provider]
         );
         return resultado;
@@ -109,11 +112,12 @@ export const readProductosBySubcategoryAndProviderRepository = async (subcategor
     }
 }
 
+// ✅ ARREGLADO: Ahora usa $1, $2 y $3
 export const readProductosByCategoryAndSubcategoryAndProviderRepository = async (category, subcategory, provider) => {
     const pool = await getConnection();
     try {
         const resultado = await pool.query(
-            `${queries.readProductos} WHERE ${queries.readByCategory} AND ${queries.readBySubcategory} AND ${queries.readByProvider}`,
+            `${queries.readProductos} WHERE cs.categorianombre = $1 AND cs.subcategorianombre = $2 AND pv.nombre = $3`,
             [category, subcategory, provider]
         );
         return resultado;
@@ -187,7 +191,7 @@ export const readProveedoresRepository = async () => {
 export const readCategoriasSubcategoriasRepository = async () => {
     const pool = await getConnection();
     try {
-        const resultado = await pool.query(`${queries.readTable} CategoriasSubcategorias`);
+        const resultado = await pool.query(`${queries.readTable} categoriassubcategorias`);
         return resultado;
     } catch (error) {
         console.error('Error en el Repositorio: ', error)

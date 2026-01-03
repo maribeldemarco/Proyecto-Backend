@@ -15,7 +15,7 @@ export const queriesRead = {
         cs.*,
         pv.ProveedorID, pv.Nombre as Proveedor
         FROM productos pd
-        INNER JOIN CategoriasSubcategorias cs on pd.CategoriaSubcategoriaID = cs.CategoriasSubcategoriasID
+        INNER JOIN CategoriasSubcategorias cs on pd.CategoriaSubcategoriaID = cs.categoriassubcategoriasid
         INNER JOIN proveedores pv on pd.ProveedorID = pv.ProveedorID
         `,
     readById: `pd.ProductoID = $1`,
