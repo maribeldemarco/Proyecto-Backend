@@ -10,9 +10,8 @@ export async function getConnection() {
                 connectionString: process.env.DATABASE_URL,  // ⭐ Usar esto
                 ssl: {
                     rejectUnauthorized: false
-                },
-                max: 3
-            });
+                }
+                            });
             
             console.log('✓ Pool de conexión creado');
         }
