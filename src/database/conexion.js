@@ -28,7 +28,8 @@ export async function getConnection() {
             // Crear pool con la configuración modificada
             pool = new Pool({
                 ...dbConfig,
-                host: resolvedHost  // Usar la IP resuelta
+                host: resolvedHost,
+                max: 3  // // Usar la IP resuelta
             });
             
             console.log('✓ Pool de conexión creado');
